@@ -24,5 +24,3 @@ jobs:
       run: echo ${{ secrets.MY_SECRET }}
     - name: Print env
       run: echo ${{ env.MY_SECRET }}
-    - name: Print plain secret
-      run: echo ${{ MY_SECRET }}
