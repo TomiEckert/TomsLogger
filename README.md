@@ -40,7 +40,7 @@ Logger.Initialize(config);
 
 The default configuration contains the following settings:
 
-  - `DisplayLevel`: info
-  - `WriteToFile`: true
-  - `Filename`: log.txt
-  - `Callback`: `Console.WriteLine`
+- `DisplayLevel`: info
+- `WriteToFile`: true
+- `Filename`: log.txt
+- `Callback`: `Console.WriteLine`
