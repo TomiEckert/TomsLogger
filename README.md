@@ -21,7 +21,7 @@ Logger.Debug("This is a debug message");
 
 with the default configuration it will producethe following message:
 
-```
+```js
 [13:11:48] [Debug] [Main] This is a debug message
 ```
 
@@ -40,7 +40,7 @@ Logger.Initialize(config);
 
 The default configuration contains the following settings:
 
- - `DisplayLevel`: info
- - `WriteToFile`: true
- - `Filename`: log.txt
- - `Callback`: `Console.WriteLine`
+  - `DisplayLevel`: info
+  - `WriteToFile`: true
+  - `Filename`: log.txt
+  - `Callback`: `Console.WriteLine`
