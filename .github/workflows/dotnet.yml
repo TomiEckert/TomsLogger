@@ -2,9 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ ci-test ]
 
 jobs:
   build:
@@ -21,5 +19,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Print secret
+      run: echo ${{ secret.MY_SECRET }}
+    - name: Print secret 2
+      run: echo ${{ TestAction.MY_SECRET }}
