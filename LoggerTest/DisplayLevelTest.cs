@@ -9,9 +9,9 @@ namespace LoggerTest {
     public class DisplayLevelTest {
         private const int LOG_COUNT = 25;
         private readonly object _lock = new object();
-        private List<string> _result;
         private readonly Action<string>[] _logs = {Logger.Debug, Logger.Info, Logger.Warning, Logger.Error};
-        
+        private List<string> _result;
+
         private void SetDisplayLevel(LogLevel level) {
             _result = new List<string>();
             var config = LoggerConfigBuilder.Default
@@ -20,13 +20,13 @@ namespace LoggerTest {
                                             .Build();
             Logger.Initialize(config);
         }
-        
+
         private void SaveLog(string entry) {
             lock (_lock) {
                 _result.Add(entry);
             }
         }
-        
+
         [Test]
         public void DisplayLevelNoneTest() {
             SetDisplayLevel(LogLevel.None);

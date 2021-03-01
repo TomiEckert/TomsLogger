@@ -14,8 +14,9 @@ namespace TomsLogger {
             DisplayLevel = config.DisplayLevel;
         }
 
-        private readonly object _listLock = new object();
         private readonly object _fileLock = new object();
+
+        private readonly object _listLock = new object();
         private Action<string> Callback { get; }
         private List<LogEntry> Entries { get; }
         private string Filename { get; }

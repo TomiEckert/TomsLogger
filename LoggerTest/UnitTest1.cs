@@ -34,8 +34,6 @@ namespace LoggerTest {
             Assert.AreEqual(LOG_COUNT, _result.Count);
         }
 
-        
-
         [Test]
         public void ThreadSafetyTest() {
             var tasks = new Task[TASK_COUNT];
@@ -77,7 +75,7 @@ namespace LoggerTest {
 
             return true;
         }
-        
+
         private void SaveLog(string entry) {
             lock (_lock) {
                 _result.Add(entry);
