@@ -57,7 +57,7 @@ namespace LoggerTest {
                 return false;
             }
 
-            await Task.Delay(random);
+            await Task.Delay(random).ConfigureAwait(false);
             try {
                 Logger.Info("Stage 2");
             }
@@ -65,7 +65,7 @@ namespace LoggerTest {
                 return false;
             }
 
-            await Task.Delay(random);
+            await Task.Delay(random).ConfigureAwait(false);
             try {
                 Logger.Info("Exiting");
             }
