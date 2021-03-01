@@ -10,11 +10,13 @@ namespace TomsLogger.Config {
             Filename = "log.txt";
             WriteToFile = true;
             DisplayLevel = LogLevel.Info;
+            FullClassName = false;
         }
 
         private Action<string> Callback { get; set; }
         private string Filename { get; set; }
         private bool WriteToFile { get; set; }
+        private bool FullClassName { get; set; }
         private LogLevel DisplayLevel { get; set; }
 
         public static LoggerConfigBuilder Default => new LoggerConfigBuilder();
@@ -30,8 +32,13 @@ namespace TomsLogger.Config {
             return this;
         }
 
-        public LoggerConfigBuilder DoNotSaveToFile() {
-            WriteToFile = false;
+        public LoggerConfigBuilder SetSaveToFile(bool save) {
+            WriteToFile = save;
+            return this;
+        }
+
+        public LoggerConfigBuilder SetUseFullClassName(bool fullName) {
+            FullClassName = fullName;
             return this;
         }
 
@@ -45,7 +52,8 @@ namespace TomsLogger.Config {
                 Callback,
                 Filename,
                 WriteToFile,
-                DisplayLevel
+                DisplayLevel,
+                FullClassName
             );
         }
     }

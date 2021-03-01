@@ -8,9 +8,13 @@ namespace TomsLogger {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class Logger {
         private static LoggerService service;
+        private static LogLevel displayLevel;
+        private static bool useFullClassName;
 
         public static void Initialize(LoggerConfig config) {
             service = new LoggerService(config);
+            displayLevel = config.DisplayLevel;
+            useFullClassName = config.UseFullClassName;
         }
 
         public static void SaveToFile(string filename) {
@@ -18,28 +22,28 @@ namespace TomsLogger {
         }
 
         public static void Debug(string message) {
-            if(service.DisplayLevel > LogLevel.Debug) return;
+            if(displayLevel > LogLevel.Debug) return;
             var entry = LogEntry.Debug(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
         public static void Info(string message) {
-            if(service.DisplayLevel > LogLevel.Info) return;
+            if(displayLevel > LogLevel.Info) return;
             var entry = LogEntry.Info(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
         public static void Warning(string message) {
-            if(service.DisplayLevel > LogLevel.Warning) return;
+            if(displayLevel > LogLevel.Warning) return;
             var entry = LogEntry.Warning(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
         public static void Error(string message) {
-            if(service.DisplayLevel > LogLevel.Error) return;
+            if(displayLevel > LogLevel.Error) return;
             var entry = LogEntry.Error(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
@@ -49,7 +53,7 @@ namespace TomsLogger {
             var mb = new StackTrace().GetFrame(2)?.GetMethod();
             var mi = mb as MethodInfo;
             if (mi == null) return mb?.Name;
-            var c = mi.DeclaringType?.Name + ".";
+            var c = useFullClassName ? mi.DeclaringType?.FullName  + "." : mi.DeclaringType?.Name + ".";
             return c + mi.Name;
         }
     }

@@ -22,7 +22,7 @@ namespace LoggerTest {
             _result = new List<string>();
 
             var config = LoggerConfigBuilder.Default
-                                            .DoNotSaveToFile()
+                                            .SetSaveToFile(false)
                                             .SetDisplayLevel(LogLevel.Info)
                                             .SetCallback(SaveLog)
                                             .Build();

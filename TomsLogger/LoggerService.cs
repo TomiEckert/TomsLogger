@@ -17,10 +17,10 @@ namespace TomsLogger {
         private readonly object _listLock = new object();
         private readonly object _fileLock = new object();
         private Action<string> Callback { get; }
-        internal LogLevel DisplayLevel { get; }
         private List<LogEntry> Entries { get; }
         private string Filename { get; }
         private bool WriteToFile { get; }
+        private LogLevel DisplayLevel { get; }
 
         internal void Add(LogEntry entry) {
             lock (_listLock) {
