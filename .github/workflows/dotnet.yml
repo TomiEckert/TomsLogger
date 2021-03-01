@@ -21,6 +21,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Print secret
-      run: echo ${{ secret.MY_SECRET }}
-    - name: Print secret 2
-      run: echo ${{ TestAction.MY_SECRET }}
+      run: echo ${{ env.MY_SECRET }}
