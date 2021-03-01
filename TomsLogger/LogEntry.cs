@@ -17,12 +17,15 @@ namespace TomsLogger {
         internal static LogEntry Debug(string sender, string message) {
             return new LogEntry(sender, message, LogLevel.Debug);
         }
+
         internal static LogEntry Info(string sender, string message) {
             return new LogEntry(sender, message, LogLevel.Info);
         }
+
         internal static LogEntry Warning(string sender, string message) {
             return new LogEntry(sender, message, LogLevel.Warning);
         }
+
         internal static LogEntry Error(string sender, string message) {
             return new LogEntry(sender, message, LogLevel.Error);
         }
