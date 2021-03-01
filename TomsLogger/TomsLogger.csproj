@@ -2,11 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <PackageVersion>0.8</PackageVersion>
+        <PackageVersion>0.9</PackageVersion>
         <Title>TomsLogger</Title>
         <Authors>TomiEckert</Authors>
-        <AssemblyVersion>0.8</AssemblyVersion>
-        <FileVersion>0.8</FileVersion>
+        <AssemblyVersion>0.9</AssemblyVersion>
+        <FileVersion>0.9</FileVersion>
         <NeutralLanguage>en</NeutralLanguage>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/TomiEckert/TomsLogger</RepositoryUrl>
