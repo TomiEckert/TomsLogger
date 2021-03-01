@@ -19,8 +19,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore && dotnet build -c Release --no-restore
+      run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Build NUPKG
+      run: dotnet build -c Release --no-restore
     - name: Publish NuGet
       run: dotnet nuget push TomsLogger/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source "https://api.nuget.org/v3/index.json"
