@@ -18,7 +18,6 @@ namespace LoggerTest {
 
         [SetUp]
         public void Setup() {
-            // ReSharper disable once InconsistentlySynchronizedField
             _result = new List<string>();
 
             var config = LoggerConfigBuilder.Default
@@ -35,90 +34,7 @@ namespace LoggerTest {
             Assert.AreEqual(LOG_COUNT, _result.Count);
         }
 
-        [Test]
-        public void DisplayLevelNoneTest() {
-            ChangeDisplayLevel(LogLevel.None);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Debug("First log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Info("Second log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Warning("Third log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Error("Fourth log");
-            Assert.AreEqual(0, _result.Count);
-        }
-
-        [Test]
-        public void DisplayLevelDebugTest() {
-            ChangeDisplayLevel(LogLevel.Debug);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Debug("First log");
-            Assert.AreEqual(LOG_COUNT, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Info("Second log");
-            Assert.AreEqual(LOG_COUNT * 2, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Warning("Third log");
-            Assert.AreEqual(LOG_COUNT * 3, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Error("Fourth log");
-            Assert.AreEqual(LOG_COUNT * 4, _result.Count);
-        }
-
-        [Test]
-        public void DisplayLevelInfoTest() {
-            ChangeDisplayLevel(LogLevel.Info);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Debug("First log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Info("Second log");
-            Assert.AreEqual(LOG_COUNT * 1, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Warning("Third log");
-            Assert.AreEqual(LOG_COUNT * 2, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Error("Fourth log");
-            Assert.AreEqual(LOG_COUNT * 3, _result.Count);
-        }
-
-        [Test]
-        public void DisplayLevelWarningTest() {
-            ChangeDisplayLevel(LogLevel.Warning);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Debug("First log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Info("Second log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Warning("Third log");
-            Assert.AreEqual(LOG_COUNT, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Error("Fourth log");
-            Assert.AreEqual(LOG_COUNT * 2, _result.Count);
-        }
-
-        [Test]
-        public void DisplayLevelErrorTest() {
-            ChangeDisplayLevel(LogLevel.Error);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Debug("First log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Info("Second log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Warning("Third log");
-            Assert.AreEqual(0, _result.Count);
-
-            for (var i = 0; i < LOG_COUNT; i++) Logger.Error("Fourth log");
-            Assert.AreEqual(LOG_COUNT, _result.Count);
-        }
+        
 
         [Test]
         public void ThreadSafetyTest() {
@@ -161,15 +77,7 @@ namespace LoggerTest {
 
             return true;
         }
-
-        private void ChangeDisplayLevel(LogLevel level) {
-            var config = LoggerConfigBuilder.Default
-                                            .SetCallback(SaveLog)
-                                            .SetDisplayLevel(level)
-                                            .Build();
-            Logger.Initialize(config);
-        }
-
+        
         private void SaveLog(string entry) {
             lock (_lock) {
                 _result.Add(entry);
