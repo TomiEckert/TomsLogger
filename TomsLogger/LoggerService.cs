@@ -6,40 +6,40 @@ using TomsLogger.Model;
 
 namespace TomsLogger {
     internal class LoggerService {
-        public LoggerService(LoggerConfig config) {
-            _entries = new List<LogEntry>();
-            _callback = config.Callback;
-            _writeToFile = config.WriteToFile;
-            _filename = config.FileName;
-            _displayLevel = config.DisplayLevel;
+        internal LoggerService(LoggerConfig config) {
+            Entries = new List<LogEntry>();
+            Callback = config.Callback;
+            WriteToFile = config.WriteToFile;
+            Filename = config.FileName;
+            DisplayLevel = config.DisplayLevel;
         }
 
-        private readonly Action<string> _callback;
-        private readonly LogLevel _displayLevel;
-        private readonly List<LogEntry> _entries;
-        private readonly object _fileLock = new object();
-        private readonly string _filename;
         private readonly object _listLock = new object();
-        private readonly bool _writeToFile;
+        private readonly object _fileLock = new object();
+        private Action<string> Callback { get; }
+        internal LogLevel DisplayLevel { get; }
+        private List<LogEntry> Entries { get; }
+        private string Filename { get; }
+        private bool WriteToFile { get; }
 
-        public void Add(LogEntry entry) {
+        internal void Add(LogEntry entry) {
             lock (_listLock) {
-                _entries.Add(entry);
+                Entries.Add(entry);
             }
 
-            if (entry.Level >= _displayLevel)
-                _callback?.Invoke(entry.ToString());
+            if (entry.Level >= DisplayLevel)
+                Callback?.Invoke(entry.ToString());
 
-            if (!_writeToFile) return;
+            if (!WriteToFile) return;
             lock (_fileLock) {
-                File.AppendAllText(_filename, entry + Environment.NewLine);
+                File.AppendAllText(Filename, entry + Environment.NewLine);
             }
         }
 
-        public void SaveToFile(string filename, bool append = true) {
+        internal void SaveToFile(string filename, bool append = true) {
             string content;
             lock (_listLock) {
-                content = string.Join(Environment.NewLine, _entries);
+                content = string.Join(Environment.NewLine, Entries);
             }
 
             lock (_fileLock) {
