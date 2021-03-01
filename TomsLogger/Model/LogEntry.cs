@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace TomsLogger.Model {
-    internal readonly struct LogEntry {
+    internal readonly struct LogEntry : IEquatable<LogEntry> {
         private string ObjectName { get; }
         private string Message { get; }
         private TimeSpan Time { get; }
@@ -35,6 +35,21 @@ namespace TomsLogger.Model {
             var levelBlock = "[" + Level + "]";
             var senderBlock = "[" + ObjectName + "]";
             return $"{timeBlock} {levelBlock} {senderBlock} {Message}";
+        }
+
+        public bool Equals(LogEntry other) {
+            return ObjectName == other.ObjectName &&
+                   Message == other.Message &&
+                   Time.Equals(other.Time) &&
+                   Level == other.Level;
+        }
+
+        public override bool Equals(object obj) {
+            return obj is LogEntry other && Equals(other);
+        }
+
+        public override int GetHashCode() {
+            return HashCode.Combine(ObjectName, Message, Time, (int) Level);
         }
     }
 }
