@@ -8,7 +8,7 @@ using TomsLogger.Config;
 using TomsLogger.Model;
 
 namespace LoggerTest {
-    public class Tests {
+    public class GeneralLoggerTest {
         private const int TASK_COUNT = 500;
         private const int MAX_DELAY = 500;
         private const int MIN_DELAY = 100;
