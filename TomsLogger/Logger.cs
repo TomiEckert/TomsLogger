@@ -18,24 +18,28 @@ namespace TomsLogger {
         }
 
         public static void Debug(string message) {
+            if(service.DisplayLevel > LogLevel.Debug) return;
             var entry = LogEntry.Debug(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
         public static void Info(string message) {
+            if(service.DisplayLevel > LogLevel.Info) return;
             var entry = LogEntry.Info(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
         public static void Warning(string message) {
+            if(service.DisplayLevel > LogLevel.Warning) return;
             var entry = LogEntry.Warning(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
         public static void Error(string message) {
+            if(service.DisplayLevel > LogLevel.Error) return;
             var entry = LogEntry.Error(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
