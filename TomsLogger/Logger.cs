@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using TomsLogger.Config;
+using TomsLogger.Model;
 
 namespace TomsLogger {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]

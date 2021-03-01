@@ -1,4 +1,4 @@
-﻿namespace TomsLogger {
+﻿namespace TomsLogger.Model {
     public enum LogLevel {
         Debug = 0,
         Info = 1,

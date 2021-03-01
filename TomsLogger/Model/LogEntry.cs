@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace TomsLogger {
-    public readonly struct LogEntry {
+namespace TomsLogger.Model {
+    internal readonly struct LogEntry {
         private string ObjectName { get; }
         private string Message { get; }
         private TimeSpan Time { get; }

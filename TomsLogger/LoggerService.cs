@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using TomsLogger.Config;
+using TomsLogger.Model;
 
 namespace TomsLogger {
     internal class LoggerService {

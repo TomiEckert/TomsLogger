@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using TomsLogger;
 using TomsLogger.Config;
+using TomsLogger.Model;
 
 namespace LoggerTest {
     public class Tests {

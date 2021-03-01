@@ -1,4 +1,5 @@
 ﻿using System;
+using TomsLogger.Model;
 
 namespace TomsLogger.Config {
     public class LoggerConfig {
