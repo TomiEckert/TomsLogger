@@ -1,5 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using TomsLogger.Config;
 using TomsLogger.Model;
 
@@ -16,28 +17,36 @@ namespace TomsLogger {
             service.SaveToFile(filename);
         }
 
-        public static void Debug(string message, [CallerMemberName] string objectName = "unknown") {
-            var entry = LogEntry.Debug(objectName, message);
+        public static void Debug(string message) {
+            var entry = LogEntry.Debug(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
-        public static void Info(string message, [CallerMemberName] string objectName = "unknown") {
-            var entry = LogEntry.Info(objectName, message);
+        public static void Info(string message) {
+            var entry = LogEntry.Info(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
-        public static void Warning(string message, [CallerMemberName] string objectName = "unknown") {
-            var entry = LogEntry.Warning(objectName, message);
+        public static void Warning(string message) {
+            var entry = LogEntry.Warning(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
         }
 
-        public static void Error(string message, [CallerMemberName] string objectName = "unknown") {
-            var entry = LogEntry.Error(objectName, message);
+        public static void Error(string message) {
+            var entry = LogEntry.Error(GetSender(), message);
             service ??= new LoggerService(LoggerConfigBuilder.Default.Build());
             service.Add(entry);
+        }
+
+        private static string GetSender() {
+            var mb = new StackTrace().GetFrame(2)?.GetMethod();
+            var mi = mb as MethodInfo;
+            if (mi == null) return mb?.Name;
+            var c = mi.DeclaringType?.Name + ".";
+            return c + mi.Name;
         }
     }
 }
