@@ -1,12 +1,8 @@
 # TomsLogger
 
-[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/TomiEckert/TomsLogger?include_prereleases&style=flat)](https://github.com/TomiEckert/TomsLogger/releases/latest)
-[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/TomsLogger)](https://www.nuget.org/packages/TomsLogger)
-[![GitHub](https://img.shields.io/github/license/TomiEckert/TomsLogger)](https://github.com/TomiEckert/TomsLogger/blob/main/LICENSE)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TomiEckert/TomsLogger/.NET)](https://github.com/TomiEckert/TomsLogger/actions/workflows/dotnet.yml)
-[![CodeFactor](https://www.codefactor.io/repository/github/tomieckert/tomslogger/badge)](https://www.codefactor.io/repository/github/tomieckert/tomslogger)
-[![BCH compliance](https://bettercodehub.com/edge/badge/TomiEckert/TomsLogger?branch=main)](https://bettercodehub.com/)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/047e56a65a6f4c8cb8fc860535156d74)](https://www.codacy.com/gh/TomiEckert/TomsLogger/dashboard)
+|[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/TomiEckert/TomsLogger?include_prereleases&style=flat)](https://github.com/TomiEckert/TomsLogger/releases/latest)|[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/TomsLogger)](https://www.nuget.org/packages/TomsLogger)|[![GitHub](https://img.shields.io/github/license/TomiEckert/TomsLogger)](https://github.com/TomiEckert/TomsLogger/blob/main/LICENSE)|[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TomiEckert/TomsLogger/.NET)](https://github.com/TomiEckert/TomsLogger/actions/workflows/dotnet.yml)|
+|-|-|-|-|
+|[![CodeFactor](https://www.codefactor.io/repository/github/tomieckert/tomslogger/badge)](https://www.codefactor.io/repository/github/tomieckert/tomslogger)|[![BCH compliance](https://bettercodehub.com/edge/badge/TomiEckert/TomsLogger?branch=main)](https://bettercodehub.com/)|[![Codacy Badge](https://app.codacy.com/project/badge/Grade/047e56a65a6f4c8cb8fc860535156d74)](https://www.codacy.com/gh/TomiEckert/TomsLogger/dashboard)|[![DeepSource](https://deepsource.io/gh/TomiEckert/TomsLogger.svg/?label=active+issues)](https://deepsource.io/gh/TomiEckert/TomsLogger)
 
 Super simple thread safe logger
 
