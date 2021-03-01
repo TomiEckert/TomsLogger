@@ -6,55 +6,47 @@ namespace TomsLogger.Config {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class LoggerConfigBuilder {
         private LoggerConfigBuilder() {
-            Callback = Console.WriteLine;
-            Filename = "log.txt";
-            WriteToFile = true;
-            DisplayLevel = LogLevel.Info;
-            FullClassName = false;
+            Config = new LoggerConfig {
+                Callback = Console.WriteLine,
+                FileName = "log.txt",
+                WriteToFile = true,
+                DisplayLevel = LogLevel.Info,
+                UseFullClassName = false
+            };
         }
 
-        private Action<string> Callback { get; set; }
-        private string Filename { get; set; }
-        private bool WriteToFile { get; set; }
-        private bool FullClassName { get; set; }
-        private LogLevel DisplayLevel { get; set; }
+        private LoggerConfig Config { get; }
 
         public static LoggerConfigBuilder Default => new LoggerConfigBuilder();
 
         public LoggerConfigBuilder SetCallback(Action<string> callback) {
-            Callback = callback;
+            Config.Callback = callback;
             return this;
         }
 
         public LoggerConfigBuilder SetFilename(string filename) {
-            WriteToFile = true;
-            Filename = filename;
+            Config.WriteToFile = true;
+            Config.FileName = filename;
             return this;
         }
 
         public LoggerConfigBuilder SetSaveToFile(bool save) {
-            WriteToFile = save;
+            Config.WriteToFile = save;
             return this;
         }
 
         public LoggerConfigBuilder SetUseFullClassName(bool fullName) {
-            FullClassName = fullName;
+            Config.UseFullClassName = fullName;
             return this;
         }
 
         public LoggerConfigBuilder SetDisplayLevel(LogLevel level) {
-            DisplayLevel = level;
+            Config.DisplayLevel = level;
             return this;
         }
 
         public LoggerConfig Build() {
-            return new LoggerConfig(
-                Callback,
-                Filename,
-                WriteToFile,
-                DisplayLevel,
-                FullClassName
-            );
+            return Config;
         }
     }
 }
